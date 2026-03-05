@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRI 2027 — Human-Robot Interaction Conference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-b.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="Group 11.png" alt="HRI 2027" class="nav-logo-img">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#dates">Key Dates</a></li>
+        <li><a href="#about">Overview</a></li>
+        <li><a href="#sponsors">Sponsors</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <canvas id="terrain" class="terrain-canvas" aria-hidden="true"></canvas>
+    <div class="hero-content">
+      <p class="hero-date">March 16–19, 2027 · Silicon Valley — Santa Clara, CA, USA</p>
+      <p class="hero-conf-name">HRI 2027</p>
+      <h1 class="hero-title">Innovative HRI</h1>
+      <p class="hero-edition">The 22nd ACM/IEEE International Conference on Human-Robot Interaction</p>
+      <p class="hero-orgs">ACM SIGCHI · ACM SIGAI · IEEE RAS</p>
+      <a href="#" class="hero-cta">Register Now →</a>
+      <!-- Countdown inside hero -->
+      <div class="countdown" id="countdown">
+        <div class="countdown-row">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-days">--</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-hours">--</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-mins">--</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-secs">--</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+        <p class="countdown-caption">until HRI 2027</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dates" id="dates">
+    <div class="container">
+      <h2 class="section-title">Key Dates</h2>
+      <div class="dates-table-wrap">
+        <table class="dates-table">
+          <thead>
+            <tr><th>Submission Type</th><th>Deadline</th><th>Notification</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Full Papers — Abstract</td><td><time>Sep 22, 2026</time></td><td>—</td></tr>
+            <tr><td>Full Papers — Submission</td><td><time>Sep 30, 2026</time></td><td><time>Dec 1, 2026</time></td></tr>
+            <tr><td>Workshops &amp; Tutorials</td><td><time>Oct 7, 2026</time></td><td><time>Nov 11, 2026</time></td></tr>
+            <tr><td>alt.HRI</td><td><time>Nov 28, 2026</time></td><td><time>Jan 10, 2027</time></td></tr>
+            <tr><td>Late-Breaking Reports</td><td><time>Dec 7, 2026</time></td><td><time>Jan 10, 2027</time></td></tr>
+            <tr><td>Camera-Ready Papers</td><td><time>Jan 5, 2027</time></td><td>—</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Conference</td><td colspan="2">March 16–19, 2027 · Santa Clara, CA</td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="dates-note">All deadlines are 23:59 Anywhere on Earth (AoE)</p>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">About the Conference</h2>
+      <p class="about-lead">HRI is the premier international conference for researchers and practitioners advancing Human-Robot Interaction.</p>
+      <p class="about-body">Sponsored by ACM SIGCHI, ACM SIGAI, and IEEE RAS, HRI brings together researchers spanning robotics, human-computer interaction, human factors, artificial intelligence, engineering, and social and behavioral sciences. The theme of the 22nd edition — <em>Innovative HRI</em> — explores new frontiers in how humans and robots collaborate, communicate, and coexist.</p>
+    </div>
+  </section>
+
+  <section class="photo-section">
+    <div class="container">
+      <div class="photo-placeholder"><span>Conference / Venue Photo</span></div>
+    </div>
+  </section>
+
+  <section class="sponsors" id="sponsors">
+    <div class="container">
+      <h2 class="section-title">Sponsors</h2>
+      <div class="sponsor-grid">
+        <div class="sponsor-slot"></div><div class="sponsor-slot"></div><div class="sponsor-slot"></div><div class="sponsor-slot"></div><div class="sponsor-slot"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <p class="footer-copy">© 2027 ACM/IEEE International Conference on Human-Robot Interaction (HRI 2027). All rights reserved.</p>
+        <div class="footer-links"><a href="#">Contact</a><a href="#">Past Editions</a><a href="#">Code of Conduct</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="terrain-b.js"></script>
+  <script>
+    (function() {
+      var target = new Date('2027-03-16T00:00:00').getTime();
+      function update() {
+        var now = Date.now();
+        var diff = target - now;
+        if (diff < 0) diff = 0;
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-days').textContent = d;
+        document.getElementById('cd-hours').textContent = h < 10 ? '0'+h : h;
+        document.getElementById('cd-mins').textContent = m < 10 ? '0'+m : m;
+        document.getElementById('cd-secs').textContent = s < 10 ? '0'+s : s;
+      }
+      update();
+      setInterval(update, 1000);
+    })();
+  </script>
+</body>
+</html>
