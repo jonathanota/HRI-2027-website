@@ -20,6 +20,7 @@
         <li><a href="#about">Overview</a></li>
         <li><a href="#sponsors">Sponsors</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -113,6 +114,7 @@
       </div>
     </div>
   </footer>
+  <script>document.querySelector(".nav-toggle").addEventListener("click",function(){document.querySelector(".nav-links").classList.toggle("open");this.classList.toggle("open")});</script>
 
   <script src="terrain-b.js"></script>
   <script>

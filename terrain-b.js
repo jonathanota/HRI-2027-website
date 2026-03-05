@@ -95,7 +95,7 @@
 
   // --- Temperature-driven energy ---
   var animSpeed = 0.008;  // default medium
-  var animAmp = 0.07;     // default medium
+  var animAmp = 0.12;     // default medium — more prominent
 
   function fetchTemperature() {
     fetch('https://api.open-meteo.com/v1/forecast?latitude=37.3541&longitude=-121.9552&current_weather=true')
@@ -105,7 +105,7 @@
         // Map temp to energy: cold=slow, hot=fast
         var t = Math.max(0, Math.min(1, (temp - 5) / 35)); // 5°C=0, 40°C=1
         animSpeed = 0.003 + t * 0.012;   // 0.003 (cold) to 0.015 (hot)
-        animAmp = 0.04 + t * 0.08;       // 0.04 (cold) to 0.12 (hot)
+        animAmp = 0.08 + t * 0.10;       // 0.08 (cold) to 0.18 (hot)
       })
       .catch(function() { /* keep defaults */ });
   }
@@ -117,11 +117,11 @@
   var t = 0;
 
   function getHeight(x, i) {
-    var base = 0.25 + i * 0.038;
+    var base = 0.15 + i * 0.045;
     var h = base
       + Math.sin(x * (1.2 + i * 0.25) + t * 0.4 + i * 0.7) * animAmp
-      + Math.sin(x * (2.5 + i * 0.15) + t * 0.25) * (animAmp * 0.5)
-      + Math.sin(x * 0.6 + i * 0.4) * 0.1;
+      + Math.sin(x * (2.5 + i * 0.15) + t * 0.25) * (animAmp * 0.6)
+      + Math.sin(x * 0.6 + i * 0.4) * 0.15;
     // Mouse ripple
     var dx = x - mx, dy = base - my;
     var dist = Math.sqrt(dx * dx + dy * dy);
