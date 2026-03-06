@@ -25,7 +25,7 @@ var CONFIG = {
 
   // --- MOUSE RIPPLE ---
   RIPPLE_RADIUS: 0.15,    // how far the mouse ripple reaches (0-1)
-  RIPPLE_STRENGTH: 0.025,  // ripple amplitude
+  RIPPLE_STRENGTH: 0.05,  // ripple amplitude
   RIPPLE_FREQ: 20,        // ripple wave frequency
   RIPPLE_SPEED: 2,        // ripple animation speed
 
@@ -41,7 +41,8 @@ var CONFIG = {
   // --- MODE SYSTEM ---
   // Mode order: 0=hills, 1=signal(PWM), 2=circuit, 3=sine
   MODE_ORDER: [0, 2, 0, 1, 0, 3],
-  MODE_HOLD_SEC: 10,      // seconds to hold each mode
+  MODE_HOLD_SEC: 10,      // seconds to hold each effect mode (signal/circuit/sine)
+  HILLS_HOLD_SEC: 8,     // seconds to hold hills between effects
   MODE_TRANSITION_SEC: 3.5, // seconds for morph transition
   FIRST_TRANSITION_SEC: 3,// seconds until first transition
 
@@ -138,6 +139,7 @@ var CONFIG = {
   var modes=C.MODE_ORDER;
   var FPS=60;
   var MODE_HOLD=Math.round(C.MODE_HOLD_SEC*FPS);
+  var HILLS_HOLD=Math.round(C.HILLS_HOLD_SEC*FPS);
   var MODE_TRANS=Math.round(C.MODE_TRANSITION_SEC*FPS);
   var modeIdx=0, modeBlend=0, modePhase='hold', modeTimer=MODE_HOLD-Math.round(C.FIRST_TRANSITION_SEC*FPS);
 
@@ -159,7 +161,7 @@ var CONFIG = {
   function updateMode(){
     modeTimer++;
     if(modePhase==='hold'){
-      if(modeTimer>=MODE_HOLD){modePhase='transition';modeTimer=0;modeBlend=0;
+      if(modeTimer>=(curMode()===0?HILLS_HOLD:MODE_HOLD)){modePhase='transition';modeTimer=0;modeBlend=0;
         if(nxtMode()===1){currentBits=textToBinary(C.PWM_MESSAGES[msgIdx%C.PWM_MESSAGES.length]);msgIdx++;}
       }
     }else{
