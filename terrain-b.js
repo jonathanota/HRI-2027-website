@@ -78,14 +78,14 @@ var CONFIG = {
 
   // --- TIME OF DAY COLORS [hour, R, G, B] ---
   COLOR_STOPS: [
-    [0,  90, 60, 160],    // midnight
-    [6,  104, 193, 195],  // 6am — teal
-    [10, 104, 193, 195],  // 10am — teal
-    [14, 184, 137, 46],   // 2pm — gold
-    [18, 184, 137, 46],   // 6pm — gold
-    [20, 193, 111, 247],  // 8pm — purple
-    [22, 120, 70, 180],   // 10pm — dim purple
-    [24, 90, 60, 160]     // midnight wrap
+    [0,  80, 20, 35],     // midnight — dim red
+    [6,  6, 153, 175],  // 6am — aqua
+    [10, 6, 153, 175],  // 10am — aqua
+    [14, 180, 122, 15],   // 2pm — gold
+    [18, 180, 122, 15],   // 6pm — gold
+    [20, 232, 48, 78],  // 8pm — dark red
+    [22, 100, 25, 40],    // 10pm — dim red
+    [24, 80, 20, 35]      // midnight wrap
   ],
   NIGHT_START: 21,        // hour night mode begins
   NIGHT_END: 5,           // hour night mode ends
@@ -124,7 +124,7 @@ var CONFIG = {
   function lerpColor(h){var stops=C.COLOR_STOPS;for(var i=0;i<stops.length-1;i++){var a=stops[i],b=stops[i+1];if(h>=a[0]&&h<b[0]){var t=(h-a[0])/(b[0]-a[0]);return[Math.round(a[1]+(b[1]-a[1])*t),Math.round(a[2]+(b[2]-a[2])*t),Math.round(a[3]+(b[3]-a[3])*t)];}}return[184,137,46];}
   function isNight(h){return h>=C.NIGHT_START||h<C.NIGHT_END;}
   var currentColor=[184,137,46],nightMode=false;
-  function updateTimeColor(){var h=getSantaClaraHour();currentColor=lerpColor(h);var was=nightMode;nightMode=isNight(h);var hex='#'+currentColor.map(function(c){return('0'+c.toString(16)).slice(-2)}).join('');document.documentElement.style.setProperty('--accent',hex);if(nightMode&&!was){document.documentElement.style.setProperty('--bg','#111111');document.documentElement.style.setProperty('--text','#e8e8e8');document.documentElement.style.setProperty('--text-sec','#999');document.documentElement.style.setProperty('--text-dim','#666');document.documentElement.style.setProperty('--border','rgba(255,255,255,0.08)');document.body.style.background='#111111';document.body.style.color='#e8e8e8';document.querySelector('.nav').style.background='rgba(17,17,17,0.9)';}else if(!nightMode&&was){document.documentElement.style.setProperty('--bg','#fafafa');document.documentElement.style.setProperty('--text','#1a1a1a');document.documentElement.style.setProperty('--text-sec','#555');document.documentElement.style.setProperty('--text-dim','#999');document.documentElement.style.setProperty('--border','rgba(0,0,0,0.08)');document.body.style.background='#fafafa';document.body.style.color='#1a1a1a';document.querySelector('.nav').style.background='rgba(250,250,250,0.9)';}}
+  function updateTimeColor(){var h=getSantaClaraHour();currentColor=lerpColor(h);var was=nightMode;nightMode=isNight(h);var hex='#'+currentColor.map(function(c){return('0'+c.toString(16)).slice(-2)}).join('');document.documentElement.style.setProperty('--accent',hex);if(nightMode&&!was){document.documentElement.style.setProperty('--bg','#111111');document.documentElement.style.setProperty('--text','#e8e8e8');document.documentElement.style.setProperty('--text-sec','#999');document.documentElement.style.setProperty('--text-dim','#666');document.documentElement.style.setProperty('--border','rgba(255,255,255,0.08)');document.body.style.background='#111111';document.body.style.color='#e8e8e8';document.querySelector('.nav').style.background='rgba(17,17,17,0.9)';var dl=document.querySelector('.nav-logo-day');var nl=document.querySelector('.nav-logo-night');if(dl)dl.style.display='none';if(nl)nl.style.display='block';}else if(!nightMode&&was){document.documentElement.style.setProperty('--bg','#fafafa');document.documentElement.style.setProperty('--text','#1a1a1a');document.documentElement.style.setProperty('--text-sec','#555');document.documentElement.style.setProperty('--text-dim','#999');document.documentElement.style.setProperty('--border','rgba(0,0,0,0.08)');document.body.style.background='#fafafa';document.body.style.color='#1a1a1a';document.querySelector('.nav').style.background='rgba(250,250,250,0.9)';var dl2=document.querySelector('.nav-logo-day');var nl2=document.querySelector('.nav-logo-night');if(dl2)dl2.style.display='block';if(nl2)nl2.style.display='none';}}
   updateTimeColor();setInterval(updateTimeColor,60000);
   // Debug overrides
   if(C.FORCE_COLOR){currentColor=C.FORCE_COLOR;var hex='#'+currentColor.map(function(c){return('0'+c.toString(16)).slice(-2)}).join('');document.documentElement.style.setProperty('--accent',hex);}
