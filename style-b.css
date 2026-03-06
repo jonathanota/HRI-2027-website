@@ -10,7 +10,7 @@ body { transition: background 2s ease, color 2s ease; font-family: var(--font-bo
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 ::selection { background: rgba(180,122,15,0.2); }
-.container { max-width: 960px; margin: 0 auto; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
 
 /* Nav */
 .nav { transition: background 2s ease, border-color 2s ease; position: sticky; top: 0; z-index: 100; background: rgba(250,250,250,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
@@ -25,7 +25,7 @@ ul { list-style: none; }
 .hero {
   position: relative; min-height: 85vh;
   display: flex; align-items: center;
-  padding: 3rem 2rem 6rem; overflow: hidden;
+  padding: 3rem 0 6rem; overflow: hidden;
 }
 /* Bottom fade — blends terrain into page bg */
 .hero::after {
@@ -45,7 +45,8 @@ ul { list-style: none; }
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
-.hero-content { position: relative; z-index: 2; max-width: 960px; margin: 0 auto; width: 100%; }
+.hero-content-wrap { width: 100%; }
+.hero-content { position: relative; z-index: 2; }
 .hero-date { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; }
 .hero-conf-name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
 .hero-title { transition: color 2s ease; font-family: var(--font-display); font-size: clamp(4rem, 12vw, 8rem); font-weight: 700; line-height: 0.88; letter-spacing: -0.04em; color: var(--accent); margin-bottom: 1rem; }
@@ -133,7 +134,7 @@ ul { list-style: none; }
   .nav-toggle { display: flex; }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 1rem 2rem; border-bottom: 1px solid var(--border); gap: 1rem; }
   .nav-links.open { display: flex; }
-  .hero { min-height: 70vh; padding: 2rem 1.5rem 4rem; }
+  .hero { min-height: 70vh; padding: 2rem 0 4rem; }
   .container { padding: 0 1.5rem; }
   .countdown-row { gap: 1.5rem; }
   .countdown-num { font-size: 1.5rem; }
